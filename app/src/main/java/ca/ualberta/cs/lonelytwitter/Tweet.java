@@ -7,24 +7,19 @@ import java.util.Date;
  * in lab2
  */
 
-public abstract class Tweet implements Tweetable{ //abstact means you can't make a Tweet object but can make Tweet a super class
-   // private final  setMessage;
+public abstract class Tweet implements Tweetable{
     private Date date;
-    public String message;
+    private String message;
 
+    public Tweet(String message){
+        this.message = message;
+        this.date = new Date();
+    }
 
-    public Tweet(Date date, String message) throws TweetTooLongException{
+    public Tweet(Date date, String message){
+        this.message = message;
         this.date = date;
-        setMessage(message);
     }
-
-    public Tweet(String message) throws TweetTooLongException {
-        setMessage(message);
-        //this.setMessage(message);
-        this.date = new Date(); //current time and date
-    }
-
-    public abstract Boolean isImportant();
 
     public Date getDate() {
         return date;
@@ -38,12 +33,13 @@ public abstract class Tweet implements Tweetable{ //abstact means you can't make
         return message;
     }
 
-    public void setMessage(String message) throws TweetTooLongException {
-        if(message.length()>144){
-            // todo throw new error here
+    public void setMessage(String message) throws TweetTooLongException{
+        if (message.length() > 140){
             throw new TweetTooLongException();
-        }else {
-            this.message = message;
         }
+        this.message = message;
     }
+
+    public abstract Boolean isImportant();
+
 }

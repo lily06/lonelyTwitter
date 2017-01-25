@@ -34,36 +34,73 @@ public class LonelyTwitterActivity extends Activity {
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
-//in lab
-		try {
-			Tweet tweet = new NormalTweet("First tweet"); //(error after abstract),error gone after make Tweet to Normal Tweet
-			tweet.setMessage("sdfsdfsfsdfs");
-			ImportantTweet importantTweet = new ImportantTweet ("gsggdsg");
-			importantTweet.getDate();
-			NormalTweet normalTweet = new NormalTweet ("im normal");
-
-			ArrayList<Tweet> arrayList = new ArrayList<Tweet>();
-			arrayList.add(tweet);
-			arrayList.add((Tweet) importantTweet);
-			arrayList.add(normalTweet);
-
-
-		} catch (TweetTooLongException e) {
-			e.printStackTrace();
-		}
-		// Tweet tweet2 = new Tweet(new Date(), "My second tweet");
-// in lab
+////in lab thursday
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+
+				Tweet tweet = new ImportantTweet("test string");
+				NormalTweet normalTweet = new NormalTweet("test string");
+
+				try {
+					if (tweet.isImportant())
+						tweet.setMessage("better string");
+				} catch (Exception e) {
+					throw new RuntimeException();
+				}
+
+				String string = tweet.getMessage();
+
+				ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+				tweetList.add(tweet);
+				tweetList.add(normalTweet);
+
 				saveInFile(text, new Date(System.currentTimeMillis()));
 				finish();
 
 			}
 		});
 	}
+////		in lab thursday
+
+
+//		in lab tuesday
+//		try {
+//			Tweet tweet = new NormalTweet("First tweet"); //(error after abstract),error gone after make Tweet to Normal Tweet
+//			tweet.setMessage("sdfsdfsfsdfs");
+//			ImportantTweet importantTweet = new ImportantTweet ("gsggdsg");
+//			importantTweet.getDate();
+//
+//			NormalTweet normalTweet = new NormalTweet ("im normal");
+//
+//			ArrayList<Tweet> arrayList = new ArrayList<Tweet>();
+//			arrayList.add(tweet);
+//			arrayList.add((Tweet) importantTweet);
+//			arrayList.add(normalTweet);
+//			if (tweet.isImportant()){
+//				tweet.setMessage("better string");
+//			}
+//
+//
+
+//		} catch (TweetTooLongException e) {
+//			e.printStackTrace();
+//		}
+		// Tweet tweet2 = new Tweet(new Date(), "My second tweet");
+// in lab
+//		saveButton.setOnClickListener(new View.OnClickListener() {
+//
+//			public void onClick(View v) {
+//				setResult(RESULT_OK);
+//				String text = bodyText.getText().toString();
+//				saveInFile(text, new Date(System.currentTimeMillis()));
+//				finish();
+//
+//			}
+//		});
+//	}
 
 	@Override
 	protected void onStart() {

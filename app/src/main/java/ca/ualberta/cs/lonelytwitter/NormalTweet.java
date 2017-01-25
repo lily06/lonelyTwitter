@@ -10,16 +10,16 @@ import java.util.Date;
  */
 
 public class NormalTweet extends Tweet {
-    public NormalTweet(Date date, String message) throws TweetTooLongException {
-        super(date, message);
-    }
-
-    public NormalTweet(String message) throws TweetTooLongException {
+    public NormalTweet(String message) {
         super(message);
     }
 
-    public Boolean isImportant(){
-        return Boolean.FALSE;
+    public NormalTweet(Date date, String message) {
+        super(date, message);
     }
 
+    @Override
+    public Boolean isImportant(){
+        return false;
+    }
 }

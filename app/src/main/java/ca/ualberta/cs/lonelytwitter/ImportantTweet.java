@@ -7,21 +7,18 @@ import java.util.Date;
  * in lab2
  */
 
-public class ImportantTweet extends Tweet{
-    public ImportantTweet(Date date, String message) throws TweetTooLongException {
-        super(date, message);
-    }
 
-    public ImportantTweet(String message) throws TweetTooLongException {
+public class ImportantTweet extends Tweet {
+    public ImportantTweet(String message) {
         super(message);
     }
 
-    public Boolean isImportant(){
-        return Boolean.TRUE;
+    public ImportantTweet(Date date, String message) {
+        super(date, message);
     }
 
-    @Override           //meant to protect from misspell of the parent....'s method
-    public String getMessage(){
-        return super.getMessage() + " !!!!";
+    @Override
+    public Boolean isImportant(){
+        return true;
     }
 }
