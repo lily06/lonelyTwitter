@@ -42,8 +42,9 @@ public class LonelyTwitterActivity extends Activity {
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
-////in lab thursday
+		Button clearButton = (Button) findViewById(R.id.clear);
 
+////in lab thursday
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -56,15 +57,23 @@ public class LonelyTwitterActivity extends Activity {
 				adapter.notifyDataSetChanged();
 
 				saveInFile();
-//				saveInFile(text, new Date(System.currentTimeMillis()));
-//				finish();
 
+			}
+		});
+
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				tweetList.clear();
+				adapter.notifyDataSetChanged();
+				saveInFile();
 			}
 		});
 	}
 ////		in lab thursday
 
-
+//-------------------------------
 //		in lab tuesday
 //		try {
 //			Tweet tweet = new NormalTweet("First tweet"); //(error after abstract),error gone after make Tweet to Normal Tweet
@@ -120,15 +129,15 @@ public class LonelyTwitterActivity extends Activity {
 
 			Gson gson = new Gson();
 
-			//Take from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylist
+			//Take from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
 			//2017-01-24 18:19
-			Type listType = new TypeToken<ArrayList<Tweet>>(){}.getType();
-			tweetList = gson.fromJson(in,new TypeToken<ArrayList<Tweet>>(){}.getType());
+			Type listType = new TypeToken<ArrayList<NormalTweet>>(){}.getType();
+			tweetList = gson.fromJson(in,listType);
 
 		} catch (FileNotFoundException e) {
 			// TODO: Handle the exception later
 			tweetList = new ArrayList<Tweet>();
-			throw new RuntimeException();
+			//throw new RuntimeException();
 		} catch (IOException e) {
 			// TODO: Handle the exception later
 			throw new RuntimeException();
@@ -139,7 +148,7 @@ public class LonelyTwitterActivity extends Activity {
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_APPEND);
+					Context.MODE_PRIVATE);
 
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
