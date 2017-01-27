@@ -127,17 +127,18 @@ public class LonelyTwitterActivity extends Activity {
 			FileInputStream fis = openFileInput(FILENAME);
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
-			Gson gson = new Gson();
+			Gson gson = new Gson(); //new Gson to operate the Json format
 
 			//Take from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
 			//2017-01-24 18:19
 			Type listType = new TypeToken<ArrayList<NormalTweet>>(){}.getType();
-			tweetList = gson.fromJson(in,listType);
+			tweetList = gson.fromJson(in,listType);//type is ArrayList<Tweet> but cannot use this so we have to google&include the previous
+													//typetoken line
 
 		} catch (FileNotFoundException e) {
 			// TODO: Handle the exception later
-			tweetList = new ArrayList<Tweet>();
-			//throw new RuntimeException();
+			tweetList = new ArrayList<Tweet>();//extensiate the tweet list here if there is not load file exist
+			// throw new RuntimeException();
 		} catch (IOException e) {
 			// TODO: Handle the exception later
 			throw new RuntimeException();
@@ -148,19 +149,19 @@ public class LonelyTwitterActivity extends Activity {
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_PRIVATE);
+					Context.MODE_PRIVATE);//means this file is not accesible to other file, also means this file is over writing the original file
 
 			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
-			Gson gson = new Gson();
-			gson.toJson(tweetList, out);
-			out.flush();
-			fos.close();
+			Gson gson = new Gson();//new Gson object
+			gson.toJson(tweetList, out);//convert the object to Json text, and update the writer; so that the writer can overwrite the file
+			out.flush();//flush the writer so that it is actually writing to the file instead the buffer
+			fos.close();//close the file so the file is saved properly(???)
 		} catch (FileNotFoundException e) {
 			// TODO: Handle the exception later
-			throw new RuntimeException();
+			throw new RuntimeException(); //stop the process
 		} catch (IOException e) {
-			throw new RuntimeException();
+			throw new RuntimeException(); //stop app from running
 		}
 	}
 }
