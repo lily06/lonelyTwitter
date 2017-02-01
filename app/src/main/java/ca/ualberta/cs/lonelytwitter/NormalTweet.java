@@ -5,15 +5,24 @@ import java.util.Date;
 //import Tweet;
 
 /**
- * Created by zhi6 on 1/17/17.
- * in lab2
+ * The type Normal tweet.
  */
-
 public class NormalTweet extends Tweet {
+    /**
+     * Instantiates a new Normal tweet.
+     *
+     * @param message the message for tweet
+     */
     public NormalTweet(String message) {
         super(message);
     }
 
+    /**
+     * Instantiates a new Normal tweet.
+     *
+     * @param date    the date
+     * @param message the message
+     */
     public NormalTweet(Date date, String message) {
         super(date, message);
     }

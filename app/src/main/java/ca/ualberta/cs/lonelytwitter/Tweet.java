@@ -5,8 +5,8 @@ import java.util.Date;
 /**
  * Created by zhi6 on 1/17/17.
  * in lab2
+ * Tweet class is a super class that implements Tweetable.
  */
-
 public abstract class Tweet implements Tweetable{
     private Date date;
     private String message;
@@ -21,6 +21,11 @@ public abstract class Tweet implements Tweetable{
         this.date = date;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public Date getDate() {
         return date;
     }
