@@ -6,11 +6,19 @@
 
 package ca.ualberta.cs.lonelytwitter;
 
+
 /**
- * This class extends the exception class, if the tweet is too long this exception will be called.
+ * This is an class of current mood.
+ * This class returns a string representation of current mood.
  * @author zhi6
  * @version 1.0
+ * @see Mood
  * @since 0.5
  */
-public class TweetTooLongException extends Exception {
+public class Sad extends Mood {
+    /**
+     *
+     * @return a string representation of current mood
+     */
+    public String representMood(){return"sad";}
 }

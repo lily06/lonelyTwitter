@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2017. TeamX, CMPUT301University of Alberta. All rights Reserved You may use,
+ * distribute or modify this code under terms and conditions of Code of Student Behaviour. You can
+ * find a copy of the license in this project. Otherwise, please contact contact@contact.ca.
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -27,36 +33,34 @@ import com.google.gson.reflect.TypeToken;
 /**
  * This class is the main view class of the project. <br> In this class, user interaction
  * and file manipulation is performed.
- *
+ * <p>
  * All files are in the form of "json" files that are stored in Emulator's accessible from Android Device Monitor
  * <pre>
  *     pre-formatted text: <br>
  *         File Explorer -> data -> ca.ualberta.cs.lonelytwitter -> files ->file.sav
  * </pre>
  * <code> begin <br>
- * some pseudo code <br>
+ * 		some pseudo code <br>
  * end.</code>
  * The file name is indicated in the &nbsp &nbsp FILENAME constant.
- * <ul>
- *     <li>item 1</li>
- *     <li>item 2</li>
- *     <li>item 3</li>
  *
+ * <ul>
+ *     	<li>item 1</li>
+ * 		<li>item 2</li>
+ * 		<li>item 3</li>
  * </ul>
  *
  * <ol>
- *     <li>item 1</li>
- *     <li>item 2</li>
- *     <li>item 3</li>
- *
+ *     	<li>item 1</li>
+ * 		<li>item 2</li>
+ * 		<li>item 3</li>
  * </ol>
  *
- * 	@author zhi6
- * 	@version 1.0
- * 	@see Tweet
- * 	@since 0.5
+ * @author zhi6
+ * @version 1.0
+ * @see Tweet
+ * @since 0.5
  */
-
 public class LonelyTwitterActivity extends Activity {
 	/**
 	 * The file that all the tweets are saved here. The format of the file is JSON
@@ -64,7 +68,20 @@ public class LonelyTwitterActivity extends Activity {
 	 * @see #saveInFile()
 	 */
 	private static final String FILENAME = "file.sav";
-	private enum TweetListOrdering {DATE_ASCENDING, DATE_DESCENDING, TEXT_ASCENDING, TEXT_DESCENDING};
+	private enum TweetListOrdering {
+		/**
+		 * Date ascending tweet list ordering.
+		 */
+		DATE_ASCENDING, /**
+		 * Date descending tweet list ordering.
+		 */
+		DATE_DESCENDING, /**
+		 * Text ascending tweet list ordering.
+		 */
+		TEXT_ASCENDING, /**
+		 * Text descending tweet list ordering.
+		 */
+		TEXT_DESCENDING};
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	private ArrayAdapter<Tweet> adapter;
@@ -162,7 +179,7 @@ public class LonelyTwitterActivity extends Activity {
 	}
 
 	/**
-	 * Trims extre spaces using regular expression.
+	 * Trims extra spaces using regular expression.
 	 * @param inputString string that needs to be cleared for extra spaces
 	 * @return resulting string
      */
