@@ -62,12 +62,13 @@ public class ElasticsearchTweetController {
             String query ;//= "" +search_parameters[0] +"";
             if (search_parameters[0].equals("")){query = search_parameters[0];}
             else{
-                query = {
-                        "query" : {
-                    "term" : { "message" : search_parameters[0] }
-                }
-                }
-            }
+            query="{\n" +
+                    "\"query\" : {\n" +
+                    "\"term\" : {\n" +
+                    "\"message\" : "+ search_parameters[0] +"\n" +
+                    "}\n" +
+                    "}\n" +
+                    "}";}
 
                 // TODO Build the query
             Search search = new Search.Builder(query)
@@ -80,8 +81,15 @@ public class ElasticsearchTweetController {
                 SearchResult result = client.execute(search);
                 if (result.isSucceeded()){
                     List<NormalTweet> foundTweets =result.getSourceAsObjectList(NormalTweet.class);
-                    tweets.addAll(foundTweets);
-
+//                    if (search_parameters[0] == null){
+                        tweets.addAll(foundTweets);
+//                    else{
+//                        for (int i=0; i<foundTweets.size(); i++){
+//                            if (foundTweets[i].getMessage().equals(query)){
+//                                tweets.add(foundTweets[i]);
+//                            }
+//                        }
+//                    }
                 }
                 else{
                     Log.i("Error","Result search is not succeed");
