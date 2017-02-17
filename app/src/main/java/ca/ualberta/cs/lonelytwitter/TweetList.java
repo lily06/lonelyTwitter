@@ -1,6 +1,8 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -37,10 +39,15 @@ public class TweetList {
         }
     }
 
-    public ArrayList<NormalTweet> getTweets(){
         //return a list of tweets in chronological order
-        return tweets;
-    }
+        public void getTweets() {
+
+            Collections.sort(tweets, new Comparator<NormalTweet>() {
+                public int compare(NormalTweet tweet, NormalTweet tweet1) {
+                    return tweet.getDate().compareTo(tweet1.getDate());
+                }
+            });
+        }
 
     public int getCount(){
         //accurately count up the tweets

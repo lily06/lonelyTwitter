@@ -3,6 +3,7 @@ package ca.ualberta.cs.lonelytwitter;
 import android.test.ActivityInstrumentationTestCase2;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by zhi6 on 2/16/17.
@@ -59,14 +60,21 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
     }
     public void testGetTweets(){
         TweetList tweets = new TweetList();
-        NormalTweet tweet = new NormalTweet("some tweet");
-        NormalTweet tweet1 = new NormalTweet("some tweet2");
+        NormalTweet tweet1 = new NormalTweet("2016");
+        tweet1.setDate(new Date(2016,2,17));
+        NormalTweet tweet2 = new NormalTweet("2017");
+        tweet2.setDate(new Date(2017,2,17));
+        NormalTweet tweet3 = new NormalTweet("2018");
+        tweet3.setDate(new Date(2018,2,17));
 
-        tweets.add(tweet);
-        tweets.add(tweet1);
+        tweets.addTweet(tweet1);
+        tweets.addTweet(tweet2);
+        tweets.addTweet(tweet3);
 
-        ArrayList<NormalTweet> rTweet = tweets.getTweets();
-        assertEquals(rTweet, tweets);
+        tweets.getTweets();
+        if (tweets.getTweet(1).getDate().compareTo(tweets.getTweet(2).getDate()) < 0){
+            assertTrue(true);
+        } else assertTrue(false);
     }
     public void testgetCount(){
         TweetList tweets = new TweetList();
