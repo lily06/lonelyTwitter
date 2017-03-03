@@ -28,13 +28,16 @@ import com.google.gson.reflect.TypeToken;
 
 public class LonelyTwitterActivity extends Activity {
 
+	private LonelyTwitterActivity activity = this;
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	private ArrayList<NormalTweet> tweetList = new ArrayList<NormalTweet>();
 	private ArrayAdapter<NormalTweet> adapter;
 
-
+	public ListView getOldTweetsList(){
+		return oldTweetsList;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,17 +68,24 @@ public class LonelyTwitterActivity extends Activity {
 			//clear button is now a search button
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-//				tweetList.clear();
-//				deleteFile(FILENAME);  // TODO deprecate this button
-				ElasticsearchTweetController.GetTweetsTask getTweetsTask =new ElasticsearchTweetController.GetTweetsTask();
-				String text = bodyText.getText().toString();
-				getTweetsTask.execute(text);
+				tweetList.clear();
+				deleteFile(FILENAME);  // TODO deprecate this button
+//				ElasticsearchTweetController.GetTweetsTask getTweetsTask =new ElasticsearchTweetController.GetTweetsTask();
+//				String text = bodyText.getText().toString();
+//				getTweetsTask.execute(text);
 				adapter.notifyDataSetChanged();
 			}
 		});
 
-
+		oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+				Intent intent = new Intent(activity,EditTweetActivity.class);
+				intent.putExtra("tweet",tweetList.get(i).getMessage());
+				startActivity(intent);
+			}
+		});
 	}
+
 
 	@Override
 	protected void onStart() {

@@ -56,4 +56,6 @@ public abstract class Tweet implements Tweetable {
     public Date getDate() {
         return date;
     }
+
+
 }
